@@ -2,6 +2,8 @@ package com.eoe.jds.service;
 
 import com.eoe.jds.entity.SiteUser;
 import com.eoe.jds.persistent.UserRepository;
+import groovy.util.logging.Log4j2;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,14 +12,16 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Service
+@Log4j2
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
     //회원가입
-    public void create(String username, String email, String password) {
+
+
+    public void create(String username,String email,String password) {
         SiteUser siteUser = SiteUser.builder()
                 .username(username)
                 .email(email)
@@ -25,8 +29,8 @@ public class UserService {
                 .createDate(LocalDateTime.now())
                 .build();
         this.userRepository.save(siteUser);
-    }
 
+    }
     //작성자
     public SiteUser getUser(String username) throws DataNotFoundException {
         Optional<SiteUser> siteUser = this.userRepository.findByusername(username);

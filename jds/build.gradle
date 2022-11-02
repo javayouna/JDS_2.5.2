@@ -14,22 +14,19 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok:1.18.24'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	/*유나: mysql*/
 	implementation 'mysql:mysql-connector-java'
-	/*유나: 스프링시큐리티*/
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	/*유나: thymelaeaf*/
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-	/*유나: lombok*/
-	compileOnly 'org.projectlombok:lombok'
-	/*유나: validation(유효성검사) / JPA */
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	/*유나: 인코딩*/
 	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time'
+	//질문 or 내용 등록할 때 비어있는 값으로 등록가능, 빈 값으로 등록 못하게 하기
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 }
 
 tasks.named('test') {

@@ -1,13 +1,30 @@
 package com.eoe.jds;
 
+import com.eoe.jds.entity.SiteUser;
+import com.eoe.jds.persistent.UserRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
 
 @SpringBootTest
 class JdsApplicationTests {
 
+	@Autowired
+	private UserRepository userRepository;
+
+
+	//테스트
 	@Test
-	void contextLoads() {
+	void test_insert(){
+		SiteUser su = SiteUser.builder()
+				.username("test1")
+				.password("test")
+				.email("test1@test.com")
+				.createDate(LocalDateTime.now())
+				.build();
+		this.userRepository.save(su);
 	}
 
 }
