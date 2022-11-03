@@ -20,31 +20,34 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/**").permitAll()
-                //=>로그인 하지 않아도 모든 페이지에 접근 가능
-                .and()
-                .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/")
-                //=>로그아웃
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
-
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/**").permitAll();
         return http.build();
     }
 
+    /* //=>로그인 하지 않아도 모든 페이지에 접근 가능
+     .and()
+     .formLogin()
+     .loginPage("/user/login")
+     .defaultSuccessUrl("/")
+     //=>로그아웃
+     .and()
+     .logout()
+     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+     .logoutSuccessUrl("/")
+     .invalidateHttpSession(true);
+
+return http.build();
+}
+*/
     //비밀번호 암호화
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     //로그인 처리
-    @Bean
+   /* @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
+    }*/
 }
