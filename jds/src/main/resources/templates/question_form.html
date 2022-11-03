@@ -1,0 +1,20 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+  <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+  <form th:action="@{/controller/create}" th:object="${questionForm}" method="post">
+    <!--div 엘리먼트를 form_errors.html 파일의 th:fragment 속성명이 formErrorsFragment인 엘리먼트로 교체-->
+    <div th:replace="form_errors :: formErrorsFragment"></div>
+    <div class="mb-3">
+      <label for="subject" class="form-label">제목</label>
+      <!--th:field="*{subject}" => 오류가 발생하더라도 기존에 입력한 값 유지-->
+      <input type="text" th:field="*{subject}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">내용</label>
+      <!--th:field="*{content}" => 오류가 발생하더라도 기존에 입력한 값 유지-->
+      <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+    </div>
+    <input type="submit" value="저장하기" class="btn btn-primary my-2">
+  </form>
+</div>
+</html>
