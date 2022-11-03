@@ -1,4 +1,4 @@
-package com.eoe.jds.securityConfig;
+package com.eoe.jds.securityconfig;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
