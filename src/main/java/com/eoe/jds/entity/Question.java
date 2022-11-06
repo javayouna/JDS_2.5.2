@@ -1,10 +1,12 @@
 package com.eoe.jds.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -42,9 +44,26 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
 
+    @ManyToOne
+    private SiteUser author;
+
+    @LastModifiedDate
+    private LocalDateTime modifyDate;
+
+    @ManyToMany
+    Set<SiteUser> voter;
+
     //데이터값 수정을 위한 메서드
     public void changeSubject(String subject) {
         this.subject = subject;
+    }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
+
+    public void setModifyDate(LocalDateTime modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }
 

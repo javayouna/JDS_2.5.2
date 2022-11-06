@@ -1,6 +1,5 @@
 package com.eoe.jds.dto;
 
-import com.eoe.jds.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +16,5 @@ public class AnswerDTO {
     private String content;
     private LocalDateTime createDate;
     private QuestionDTO question;
+    private LocalDateTime modifyDate;
 }

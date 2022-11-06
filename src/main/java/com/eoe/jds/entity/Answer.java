@@ -1,10 +1,14 @@
 package com.eoe.jds.entity;
 
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,6 +33,23 @@ public class Answer {
     * 답변 Many : 질문 One 관계에 따라서 @ManyToOne 애너테이션을 사용한다.*/
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
+
+    @LastModifiedDate
+    private LocalDateTime modifyDate;
+
+    @ManyToMany
+    Set<SiteUser> voter;
+
+    public void changeAnswerContent(String content) {
+        this.content = content;
+    }
+
+    public void setModifyDate(LocalDateTime modifyDate) {
+        this.modifyDate = modifyDate;
+    }
 
 
 }
